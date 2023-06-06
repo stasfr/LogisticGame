@@ -1,21 +1,22 @@
 <template>
-  <g class="cursor-grab">
+  <g :class="cursorType">
     <!-- main background -->
     <rect
-      :x="props.options.x"
-      :y="props.options.y"
+      :x="coordX"
+      :y="coordY"
       :width="props.options.width"
       :height="props.options.height"
       rx="10"
       class="fill-slate-300 stroke-slate-600 stroke-1 hover:stroke-slate-950"
-      @mousedown="moveTab"
+      @mousedown="drag"
+      @mouseup="drop"
     />
 
     <g class="fill-slate-500">
       <!-- header top -->
       <rect
-        :x="props.options.x"
-        :y="props.options.y"
+        :x="coordX"
+        :y="coordY"
         :width="props.options.width"
         :height="props.options.height * 0.2"
         rx="10"
@@ -23,16 +24,16 @@
 
       <!-- header bottom -->
       <rect
-        :x="props.options.x"
-        :y="props.options.y + props.options.height * 0.1"
+        :x="coordX"
+        :y="coordY + props.options.height * 0.1"
         :width="props.options.width"
         :height="props.options.height * 0.1"
       />
     </g>
 
     <text
-      :x="props.options.x + props.options.width / 2"
-      :y="props.options.y + props.options.height / 10"
+      :x="coordX + props.options.width / 2"
+      :y="coordY + props.options.height / 10"
       dominant-baseline="middle"
       text-anchor="middle"
       fill="white"
@@ -51,7 +52,29 @@ const props = defineProps({
   }
 });
 
-const moveTab = event => {
-  console.log(event);
+const dragOffsetX = ref(null);
+const dragOffsetY = ref(null);
+
+const coordX = toRef(props.options.x);
+const coordY = toRef(props.options.y);
+
+const cursorType = ref('cursor-grab')
+
+const drag = ({offsetX, offsetY, target}) => {
+  cursorType.value = 'cursor-grabbing'
+  dragOffsetX.value = offsetX - coordX.value;
+  dragOffsetY.value = offsetY - coordY.value;
+  target.addEventListener('mousemove', move);
+};
+
+const drop = ({target}) => {
+  cursorType.value = 'cursor-grab'
+  dragOffsetX.value = dragOffsetY.value = null;
+  target.removeEventListener('mousemove', move);
+};
+
+const move = ({offsetX, offsetY}) => {
+  coordX.value = offsetX - dragOffsetX.value;
+  coordY.value = offsetY - dragOffsetY.value;
 };
 </script>
