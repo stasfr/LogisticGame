@@ -1,5 +1,6 @@
 <template>
   <g :class="cursorType">
+
     <!-- main background -->
     <rect
       :x="coordX"
@@ -8,8 +9,8 @@
       :height="props.options.height"
       rx="10"
       class="fill-slate-300 stroke-slate-600 stroke-1 hover:stroke-slate-950"
-      @mousedown="drag"
-      @mouseup="drop"
+      @pointerdown="drag"
+      @pointerup="drop"
     />
 
     <g class="fill-slate-500">
@@ -20,6 +21,8 @@
         :width="props.options.width"
         :height="props.options.height * 0.2"
         rx="10"
+        @pointerdown="drag"
+        @pointerup="drop"
       />
 
       <!-- header bottom -->
@@ -28,6 +31,8 @@
         :y="coordY + props.options.height * 0.1"
         :width="props.options.width"
         :height="props.options.height * 0.1"
+        @pointerdown="drag"
+        @pointerup="drop"
       />
     </g>
 
@@ -58,22 +63,23 @@ const dragOffsetY = ref(null);
 const coordX = toRef(props.options.x);
 const coordY = toRef(props.options.y);
 
-const cursorType = ref('cursor-grab')
+const cursorType = ref('cursor-grab');
 
-const drag = ({offsetX, offsetY, target}) => {
-  cursorType.value = 'cursor-grabbing'
+const drag = ({ offsetX, offsetY, target, pointerId }) => {
+  cursorType.value = 'cursor-grabbing';
   dragOffsetX.value = offsetX - coordX.value;
   dragOffsetY.value = offsetY - coordY.value;
-  target.addEventListener('mousemove', move);
+  target.setPointerCapture(pointerId)
+  target.addEventListener('pointermove', move);
 };
 
-const drop = ({target}) => {
-  cursorType.value = 'cursor-grab'
+const drop = ({ target }) => {
+  cursorType.value = 'cursor-grab';
   dragOffsetX.value = dragOffsetY.value = null;
-  target.removeEventListener('mousemove', move);
+  target.removeEventListener('pointermove', move);
 };
 
-const move = ({offsetX, offsetY}) => {
+const move = ({ offsetX, offsetY }) => {
   coordX.value = offsetX - dragOffsetX.value;
   coordY.value = offsetY - dragOffsetY.value;
 };
