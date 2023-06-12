@@ -1,48 +1,97 @@
 <template>
-  <Scene :sceneOptions="generateTests()" />
+  <Scene :sceneOptions="testOptionsSmall" />
   <BuildBtn />
   <AdminBtn />
 </template>
 
 <script setup>
-const generateTests = () => {
-  let tests = [
-    {
-      id: 1,
-      x: 100,
-      y: 100,
-      width: 200,
-      height: 100
-    }
-  ];
-
-  for (let i = 2; i < 5; i++) {
-    tests.push({
-      id: i,
-      x: tests[i - 2].x + 250,
-      y: 100,
-      width: 200,
-      height: 100 * i * 0.5 + 100
-    });
+const testOptionsSmall = [
+  {
+    id: 1,
+    x: 100,
+    y: 100,
+    width: 200,
+    height: 100
+  },
+  {
+    id: 2,
+    x: 350,
+    y: 100,
+    width: 200,
+    height: 100
+  },
+  {
+    id: 3,
+    x: 600,
+    y: 100,
+    width: 200,
+    height: 150
+  },
+  {
+    id: 4,
+    x: 850,
+    y: 100,
+    width: 200,
+    height: 150
   }
+];
 
-  for (let i = 5; i < 9; i++) {
-    tests.push({
-      id: i,
-      x: tests[i - 5].x + 250,
-      y: 500,
-      width: 200,
-      height: 100 * i * 0.5 + 100
-    });
+const testOptionsBig = [
+  {
+    id: 1,
+    x: 100,
+    y: 100,
+    width: 200,
+    height: 100
+  },
+  {
+    id: 2,
+    x: 350,
+    y: 100,
+    width: 200,
+    height: 200
+  },
+  {
+    id: 3,
+    x: 600,
+    y: 100,
+    width: 200,
+    height: 250
+  },
+  {
+    id: 4,
+    x: 850,
+    y: 100,
+    width: 200,
+    height: 300
+  },
+  {
+    id: 5,
+    x: 100,
+    y: 500,
+    width: 200,
+    height: 350
+  },
+  {
+    id: 6,
+    x: 350,
+    y: 500,
+    width: 200,
+    height: 400
+  },
+  {
+    id: 7,
+    x: 600,
+    y: 500,
+    width: 200,
+    height: 450
+  },
+  {
+    id: 8,
+    x: 850,
+    y: 500,
+    width: 200,
+    height: 500
   }
-
-  return tests;
-};
-
-const testOptions = {
-  x: 100,
-  y: 100,
-  width: 300,
-  height: 200
-};
+];
 </script>
