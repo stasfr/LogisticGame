@@ -1,6 +1,7 @@
 <template>
-  <Scene :sceneOptions="generateTests()"/>
+  <Scene :sceneOptions="generateTests()" />
   <BuildBtn />
+  <AdminBtn />
 </template>
 
 <script setup>
