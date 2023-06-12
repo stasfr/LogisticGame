@@ -1,6 +1,7 @@
 <template>
   <div
     class="absolute bottom-10 left-20 flex h-12 w-12 items-center justify-center rounded-xl bg-slate-300 transition-all hover:bg-slate-900"
+    @click="changeOption"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -19,4 +20,17 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useAdminSceneStore } from '@/store/adminScene';
+const state = useAdminSceneStore();
+
+const changeOption = () => {
+  if (state.currentOption === 'small') {
+    state.currentOption = 'big';
+    console.log(state.currentOption);
+  } else {
+    state.currentOption = 'small';
+    console.log(state.currentOption);
+  }
+};
+</script>
