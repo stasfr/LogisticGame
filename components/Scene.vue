@@ -2,7 +2,6 @@
   <svg
     class="l-0 t-0 min-w-3168 min-h-2712 absolute block h-full w-full select-none bg-slate-900"
   >
-    <!-- <Tab :options="testOptions" /> -->
     <Tab v-for="test in props.sceneOptions" :key="test.id" :options="test" />
   </svg>
 </template>
@@ -13,6 +12,5 @@ const props = defineProps({
     type: Array,
     require: true
   }
-})
-
+});
 </script>
