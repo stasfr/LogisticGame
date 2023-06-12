@@ -1,6 +1,5 @@
 <template>
   <g :class="cursorType">
-
     <!-- main background -->
     <rect
       :x="coordX"
@@ -47,6 +46,15 @@
       }}</text
     >
   </g>
+  <TabDot
+    :cx="coordX + props.options.width"
+    :cy="coordY + props.options.height * 0.3"
+  />
+  <TabDot
+    :cx="coordX"
+    :cy="coordY + props.options.height * 0.3"
+    :id="props.options.id"
+  />
 </template>
 
 <script setup>
@@ -69,7 +77,7 @@ const drag = ({ offsetX, offsetY, target, pointerId }) => {
   cursorType.value = 'cursor-grabbing';
   dragOffsetX.value = offsetX - coordX.value;
   dragOffsetY.value = offsetY - coordY.value;
-  target.setPointerCapture(pointerId)
+  target.setPointerCapture(pointerId);
   target.addEventListener('pointermove', move);
 };
 
