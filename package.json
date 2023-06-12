@@ -1,6 +1,9 @@
 {
   "name": "nuxt-app",
   "private": true,
+  "overrides": {
+    "vue": "latest"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -15,5 +18,9 @@
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
     "prisma": "^4.15.0"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.4.11",
+    "pinia": "^2.1.3"
   }
 }
