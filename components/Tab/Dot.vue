@@ -2,8 +2,10 @@
   <circle
     r="5"
     class="cursor-alias fill-white stroke-slate-600 stroke-1 hover:stroke-slate-950"
-    @pointerdown="saveSourceTab"
-    @pointerup="saveTerminationTab"
+    :cx="props.cx"
+    :cy="props.cy"
+    @pointerdown="startDrawLine"
+    @pointerup="stopDrawLine"
   />
 </template>
 
@@ -16,18 +18,34 @@ const props = defineProps({
   dotId: {
     type: Number,
     require: true
+  },
+  cx: {
+    type: Number,
+    require: true
+  },
+  cy: {
+    type: Number,
+    require: true
   }
 });
 
-const saveSourceTab = event => {
-  console.log(props.id, props.dotId);
+const startDrawLine = ({ target, pointerId }) => {
+  showData();
+  target.setPointerCapture(pointerId);
+  target.addEventListener('pointermove', move);
 };
 
-const saveTerminationTab = event => {
-  console.log(props.id, props.dotId);
+const stopDrawLine = ({ target }) => {
+  showData();
+  h('path');
+  target.removeEventListener('pointermove', move);
 };
 
-const overDot = event => {
-  console.log(props.id, props.dotId);
+const move = ({ offsetX, offsetY }) => {
+  // console.log(offsetX, offsetY);
+};
+
+const showData = () => {
+  console.log(props.id, props.dotId, props.cx, props.cy);
 };
 </script>
