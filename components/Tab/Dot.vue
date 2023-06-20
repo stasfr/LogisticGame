@@ -2,7 +2,8 @@
   <circle
     r="5"
     class="cursor-alias fill-white stroke-slate-600 stroke-1 hover:stroke-slate-950"
-    @click="dotClick"
+    @pointerdown="saveSourceTab"
+    @pointerup="saveTerminationTab"
   />
 </template>
 
@@ -11,11 +12,22 @@ const props = defineProps({
   id: {
     type: Number,
     require: true
+  },
+  dotId: {
+    type: Number,
+    require: true
   }
 });
 
-const dotClick = event => {
-  console.log(event);
-  console.log(props.id);
+const saveSourceTab = event => {
+  console.log(props.id, props.dotId);
+};
+
+const saveTerminationTab = event => {
+  console.log(props.id, props.dotId);
+};
+
+const overDot = event => {
+  console.log(props.id, props.dotId);
 };
 </script>

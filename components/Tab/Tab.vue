@@ -47,13 +47,16 @@
     >
   </g>
   <TabDot
-    :cx="coordX + props.options.width"
-    :cy="coordY + props.options.height * 0.3"
-  />
-  <TabDot
     :cx="coordX"
     :cy="coordY + props.options.height * 0.3"
     :id="props.options.id"
+    :dotId="1"
+  />
+  <TabDot
+    :cx="coordX + props.options.width"
+    :cy="coordY + props.options.height * 0.3"
+    :id="props.options.id"
+    :dotId="2"
   />
 </template>
 
