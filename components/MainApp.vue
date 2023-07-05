@@ -1,7 +1,8 @@
 <template>
-  <Scene :sceneOptions="changeOption()" />
-  <BuildBtn />
-  <AdminBtn />
+  <UISidebar />
+  <!-- <Scene :sceneOptions="changeOption()" /> -->
+  <!-- <BuildBtn />
+  <AdminBtn /> -->
 </template>
 
 <script setup>
