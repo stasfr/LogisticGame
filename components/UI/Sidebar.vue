@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
     <div
-      class="fixed left-0 top-0 m-0 flex h-screen w-16 flex-col justify-between bg-slate-950 text-white"
+      class="absolute left-0 top-0 z-10 m-0 flex h-screen w-16 flex-col justify-between overflow-visible bg-slate-950 text-white"
     >
       <div>
         <UISidebarIcon>
