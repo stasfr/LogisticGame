@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute inset-0 overflow-hidden">
+  <div class="absolute inset-0 overflow-hidden bg-slate-900">
     <Scene :sceneOptions="changeOption()" />
   </div>
 </template>
