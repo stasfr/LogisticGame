@@ -22,5 +22,6 @@ const state = useUIStore();
 
 const closeWindow = () => {
   state.isShowWindow = false;
+  state.windowType = '';
 };
 </script>

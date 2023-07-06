@@ -2,7 +2,8 @@ import { defineStore } from 'pinia';
 
 const state = () => {
   return {
-    isShowWindow: false
+    isShowWindow: false,
+    windowType: ''
   };
 };
 
