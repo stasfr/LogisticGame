@@ -2,8 +2,9 @@
   <div
     class="mx-5 mb-10 flex h-72 basis-48 flex-col justify-between rounded-xl bg-slate-700 text-slate-200"
   >
-    <div class="">{{ data.name }}</div>
-    <button class="">Build</button>
+    <div class="text-center">{{ data.name }}</div>
+    <div class="text-center">Size: {{ data.tabSize }}</div>
+    <button @click="build">{{ data.price.coins }} coins</button>
   </div>
 </template>
 
@@ -14,4 +15,8 @@ const props = defineProps({
     require: true
   }
 });
+
+const build = () => {
+  console.log('build', props.data);
+};
 </script>
