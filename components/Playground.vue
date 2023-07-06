@@ -1,18 +1,12 @@
 <template>
   <div class="absolute inset-0 overflow-hidden bg-slate-900">
-    <Scene :sceneOptions="changeOption()" />
+    <Scene :sceneOptions="sceneOption" />
   </div>
 </template>
 
 <script setup>
-import { useAdminSceneStore } from '@/store/adminScene';
-const state = useAdminSceneStore();
+import { useGameDataStore } from '@/store/gameData';
+const state = useGameDataStore();
 
-const changeOption = () => {
-  if (state.currentOption === 'small') {
-    return state.testOptionsSmall;
-  } else {
-    return state.testOptionsBig;
-  }
-};
+const sceneOption = state.scene;
 </script>
