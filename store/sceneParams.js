@@ -10,7 +10,7 @@ const getters = {};
 
 const actions = {};
 
-export const useGameDataStore = defineStore('gameDataStore', {
+export const useSceneParamsStore = defineStore('sceneParamsStore', {
   state,
   getters,
   actions

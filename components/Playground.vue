@@ -5,8 +5,8 @@
 </template>
 
 <script setup>
-import { useGameDataStore } from '@/store/gameData';
-const state = useGameDataStore();
+import { useSceneParamsStore } from '@/store/gameData';
+const state = useSceneParamsStore();
 
 const sceneOption = state.scene;
 </script>
