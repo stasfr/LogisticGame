@@ -7,7 +7,7 @@
       <slot name="icon"></slot>
     </div>
     <span
-      class="absolute left-14 m-2 w-auto min-w-max origin-left scale-0 rounded-md bg-gray-900 p-2 font-bold text-white shadow-md transition-all duration-100 group-hover:scale-100"
+      class="absolute left-14 m-2 w-auto min-w-max origin-left scale-0 rounded-md bg-gray-900 p-2 text-xs font-bold text-white shadow-md transition-all duration-100 group-hover:scale-100"
     >
       <slot name="tooltip"></slot>
     </span>
