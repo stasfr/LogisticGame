@@ -20,7 +20,11 @@
           <XIcon class="w-10" />
         </div>
       </div>
-      <UIMenuBuild v-if="state.windowType === 'build'" />
+      <div
+        class="max-h-[90%] overflow-hidden overflow-y-scroll scrollbar-thin scrollbar-track-slate-950 scrollbar-thumb-slate-700"
+      >
+        <UIMenuBuild v-if="state.windowType === 'build'" />
+      </div>
     </div>
   </div>
 </template>

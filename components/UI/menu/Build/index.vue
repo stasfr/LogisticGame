@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="flex max-h-[90%] flex-wrap justify-around overflow-hidden overflow-y-scroll pl-10 pr-9 scrollbar-thin scrollbar-track-slate-950 scrollbar-thumb-slate-700"
-  >
+  <div class="flex flex-wrap justify-around pl-10 pr-9">
     <UIMenuBuildItem
       v-for="buildMenuItem in state.buildMenuItems"
       :key="buildMenuItem.id"
