@@ -9,6 +9,9 @@
 </template>
 
 <script setup>
+import { useSceneParamsStore } from '@/store/sceneParams';
+const state = useSceneParamsStore();
+
 const props = defineProps({
   data: {
     type: Object,
@@ -17,6 +20,12 @@ const props = defineProps({
 });
 
 const build = () => {
-  console.log('build', props.data);
+  state.scene.push({
+    id: 1,
+    x: 100,
+    y: 100,
+    width: 200,
+    height: 100
+  });
 };
 </script>
