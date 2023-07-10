@@ -41,6 +41,8 @@
       dominant-baseline="middle"
       text-anchor="middle"
       fill="white"
+      @pointerdown="drag"
+      @pointerup="drop"
       >{{ props.options.id }}. w:{{ props.options.width }}, h:{{
         props.options.height
       }}</text
