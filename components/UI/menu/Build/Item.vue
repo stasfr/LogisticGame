@@ -20,12 +20,6 @@ const props = defineProps({
 });
 
 const build = () => {
-  state.scene.push({
-    id: 1,
-    x: 100,
-    y: 100,
-    width: 200,
-    height: 100
-  });
+  state.buildBuilding(props.data.name, props.data.tabSize);
 };
 </script>

@@ -43,6 +43,16 @@
       fill="white"
       @pointerdown="drag"
       @pointerup="drop"
+      >{{ props.options.name }}</text
+    >
+    <text
+      :x="coordX + props.options.width / 2"
+      :y="coordY + props.options.height / 2"
+      dominant-baseline="middle"
+      text-anchor="middle"
+      fill="black"
+      @pointerdown="drag"
+      @pointerup="drop"
       >{{ props.options.id }}. w:{{ props.options.width }}, h:{{
         props.options.height
       }}</text
