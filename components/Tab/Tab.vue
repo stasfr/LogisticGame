@@ -4,8 +4,8 @@
     <rect
       :x="coordX"
       :y="coordY"
-      :width="props.options.width"
-      :height="props.options.height"
+      :width="options.width"
+      :height="options.height"
       rx="10"
       class="fill-slate-300 stroke-slate-600 stroke-1 hover:stroke-slate-950"
       @pointerdown="drag"
@@ -17,8 +17,8 @@
       <rect
         :x="coordX"
         :y="coordY"
-        :width="props.options.width"
-        :height="props.options.height * 0.2"
+        :width="options.width"
+        :height="options.height * 0.2"
         rx="10"
         @pointerdown="drag"
         @pointerup="drop"
@@ -27,47 +27,45 @@
       <!-- header bottom -->
       <rect
         :x="coordX"
-        :y="coordY + props.options.height * 0.1"
-        :width="props.options.width"
-        :height="props.options.height * 0.1"
+        :y="coordY + options.height * 0.1"
+        :width="options.width"
+        :height="options.height * 0.1"
         @pointerdown="drag"
         @pointerup="drop"
       />
     </g>
 
     <text
-      :x="coordX + props.options.width / 2"
-      :y="coordY + props.options.height / 10"
+      :x="coordX + options.width / 2"
+      :y="coordY + options.height / 10"
       dominant-baseline="middle"
       text-anchor="middle"
       fill="white"
       @pointerdown="drag"
       @pointerup="drop"
-      >{{ props.options.name }}</text
+      >{{ options.name }}</text
     >
     <text
-      :x="coordX + props.options.width / 2"
-      :y="coordY + props.options.height / 2"
+      :x="coordX + options.width / 2"
+      :y="coordY + options.height / 2"
       dominant-baseline="middle"
       text-anchor="middle"
       fill="black"
       @pointerdown="drag"
       @pointerup="drop"
-      >{{ props.options.id }}. w:{{ props.options.width }}, h:{{
-        props.options.height
-      }}</text
+      >{{ options.id }}. w:{{ options.width }}, h:{{ options.height }}</text
     >
   </g>
   <TabDot
     :cx="coordX"
-    :cy="coordY + props.options.height * 0.3"
-    :id="props.options.id"
+    :cy="coordY + options.height * 0.3"
+    :id="options.id"
     :dotId="1"
   />
   <TabDot
-    :cx="coordX + props.options.width"
-    :cy="coordY + props.options.height * 0.3"
-    :id="props.options.id"
+    :cx="coordX + options.width"
+    :cy="coordY + options.height * 0.3"
+    :id="options.id"
     :dotId="2"
   />
 </template>
