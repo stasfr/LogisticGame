@@ -3,7 +3,12 @@ import { defineStore } from 'pinia';
 const state = () => {
   return {
     scene: [],
-    sceneLines: [{ id: 1, M: [402, 224], Q: [553, 233.5, 704, 243] }]
+    sceneLines: [{ id: 1, M: [402, 224], Q: [553, 233.5, 704, 243] }],
+    addLineProps: {
+      lineOrder: 1,
+      firstDotCoords: [0, 0],
+      secondDotCoords: [0, 0]
+    }
   };
 };
 
@@ -36,6 +41,35 @@ const actions = {
       x,
       y
     });
+  },
+  addLine({ firstDotCoords, secondDotCoords }) {
+    let id = 0;
+    let M1 = firstDotCoords[0];
+    let M2 = firstDotCoords[1];
+
+    let Q1 = secondDotCoords[0];
+    let Q2 = secondDotCoords[1];
+
+    let curve1 = (Q1 - M1) / 2 + M1;
+    let curve2 = (Q2 - M2) / 2 + M2;
+
+    if (this.sceneLines.length === 0) {
+      id = 1;
+    } else {
+      id = this.sceneLines[this.sceneLines.length - 1].id + 1;
+    }
+
+    this.sceneLines.push({ id, M: [M1, M2], Q: [curve1, curve2, Q1, Q2] });
+  },
+  setPointToLine(x, y) {
+    if (this.addLineProps.lineOrder === 1) {
+      this.addLineProps.firstDotCoords = [x, y];
+      this.addLineProps.lineOrder = 2;
+    } else {
+      this.addLineProps.secondDotCoords = [x, y];
+      this.addLineProps.lineOrder = 1;
+      this.addLine(this.addLineProps);
+    }
   }
 };
 

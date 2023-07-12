@@ -10,6 +10,9 @@
 </template>
 
 <script setup>
+import { useSceneParamsStore } from '@/store/sceneParams';
+const state = useSceneParamsStore();
+
 const props = defineProps({
   id: {
     type: Number,
@@ -29,23 +32,21 @@ const props = defineProps({
   }
 });
 
-const startDrawLine = ({ target, pointerId }) => {
-  showData();
-  target.setPointerCapture(pointerId);
-  target.addEventListener('pointermove', move);
+const startDrawLine = () => {
+  state.setPointToLine(props.cx, props.cy);
 };
 
-const stopDrawLine = ({ target }) => {
-  showData();
-  h('path');
-  target.removeEventListener('pointermove', move);
-};
+// const stopDrawLine = ({ target }) => {
+//   showData();
+//   h('path');
+//   target.removeEventListener('pointermove', move);
+// };
 
-const move = ({ offsetX, offsetY }) => {
-  // console.log(offsetX, offsetY);
-};
+// const move = ({ offsetX, offsetY }) => {
+//   console.log(offsetX, offsetY);
+// };
 
-const showData = () => {
-  console.log(props.id, props.dotId, props.cx, props.cy);
-};
+// const showData = () => {
+//   console.log(props.id, props.dotId, props.cx, props.cy);
+// };
 </script>
