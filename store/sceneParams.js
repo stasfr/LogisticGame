@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 
 const state = () => {
   return {
-    scene: [],
+    sceneTabs: [],
     sceneLines: [],
     addLineProps: {
       lineOrder: 1,
@@ -27,13 +27,13 @@ const actions = {
       height = 100;
     }
 
-    if (this.scene.length === 0) {
+    if (this.sceneTabs.length === 0) {
       id = 1;
     } else {
-      id = this.scene[this.scene.length - 1].id + 1;
+      id = this.sceneTabs[this.sceneTabs.length - 1].id + 1;
     }
 
-    this.scene.push({
+    this.sceneTabs.push({
       id,
       name,
       width,

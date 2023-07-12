@@ -8,6 +8,6 @@
 import { useSceneParamsStore } from '@/store/sceneParams';
 const state = useSceneParamsStore();
 
-const sceneOption = state.scene;
+const sceneOption = state.sceneTabs;
 const lineOption = state.sceneLines;
 </script>
