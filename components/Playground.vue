@@ -1,6 +1,6 @@
 <template>
   <div class="absolute inset-0 overflow-hidden bg-slate-900">
-    <Scene :sceneOptions="sceneOption" />
+    <Scene :sceneOptions="sceneOption" :lineOptions="lineOption" />
   </div>
 </template>
 
@@ -9,4 +9,5 @@ import { useSceneParamsStore } from '@/store/sceneParams';
 const state = useSceneParamsStore();
 
 const sceneOption = state.scene;
+const lineOption = state.sceneLines;
 </script>

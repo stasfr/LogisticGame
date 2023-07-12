@@ -2,7 +2,8 @@ import { defineStore } from 'pinia';
 
 const state = () => {
   return {
-    scene: []
+    scene: [],
+    sceneLines: [{ id: 1, M: [402, 224], Q: [553, 233.5, 704, 243] }]
   };
 };
 
