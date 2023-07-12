@@ -3,7 +3,7 @@ import { defineStore } from 'pinia';
 const state = () => {
   return {
     scene: [],
-    sceneLines: [{ id: 1, M: [402, 224], Q: [553, 233.5, 704, 243] }],
+    sceneLines: [],
     addLineProps: {
       lineOrder: 1,
       firstDotCoords: [0, 0],
@@ -42,6 +42,7 @@ const actions = {
       y
     });
   },
+
   addLine({ firstDotCoords, secondDotCoords }) {
     let id = 0;
     let M1 = firstDotCoords[0];
@@ -61,6 +62,7 @@ const actions = {
 
     this.sceneLines.push({ id, M: [M1, M2], Q: [curve1, curve2, Q1, Q2] });
   },
+
   setPointToLine(x, y) {
     if (this.addLineProps.lineOrder === 1) {
       this.addLineProps.firstDotCoords = [x, y];

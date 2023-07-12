@@ -1,11 +1,11 @@
 <template>
   <path
-    :d="params"
+    :d="lineParams"
     fill="none"
     stroke="white"
     stroke-miterlimit="10"
     pointer-events="stroke"
-    stroke-width="9"
+    stroke-width="5"
   ></path>
 </template>
 
@@ -17,5 +17,5 @@ const props = defineProps({
   }
 });
 
-const params = `M ${props.options.M[0]} ${props.options.M[1]} Q ${props.options.Q[0]} ${props.options.Q[1]} ${props.options.Q[2]} ${props.options.Q[3]} `;
+const lineParams = `M ${props.options.M[0]} ${props.options.M[1]} Q ${props.options.Q[0]} ${props.options.Q[1]} ${props.options.Q[2]} ${props.options.Q[3]} `;
 </script>

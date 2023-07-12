@@ -5,7 +5,6 @@
     :cx="props.cx"
     :cy="props.cy"
     @pointerdown="startDrawLine"
-    @pointerup="stopDrawLine"
   />
 </template>
 
@@ -35,18 +34,4 @@ const props = defineProps({
 const startDrawLine = () => {
   state.setPointToLine(props.cx, props.cy);
 };
-
-// const stopDrawLine = ({ target }) => {
-//   showData();
-//   h('path');
-//   target.removeEventListener('pointermove', move);
-// };
-
-// const move = ({ offsetX, offsetY }) => {
-//   console.log(offsetX, offsetY);
-// };
-
-// const showData = () => {
-//   console.log(props.id, props.dotId, props.cx, props.cy);
-// };
 </script>
