@@ -30,7 +30,7 @@ const actions = {
     }
 
     if (this.sceneTabs.length === 0) {
-      id = 1;
+      id = 0;
     } else {
       id = this.sceneTabs[this.sceneTabs.length - 1].id + 1;
     }
@@ -54,7 +54,7 @@ const actions = {
     let Q2 = secondDotCoords[1];
 
     if (this.sceneLines.length === 0) {
-      id = 1;
+      id = 0;
     } else {
       id = this.sceneLines[this.sceneLines.length - 1].id + 1;
     }
@@ -73,6 +73,15 @@ const actions = {
       this.addLineProps.lineOrder = 1;
       this.addLine(this.addLineProps);
     }
+  },
+
+  deleteLine(lineId) {
+    this.sceneLines.splice(
+      this.sceneLines.findIndex(element => {
+        return element.id === lineId;
+      }),
+      1
+    );
   }
 };
 

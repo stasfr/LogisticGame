@@ -6,11 +6,14 @@
     stroke-miterlimit="10"
     pointer-events="stroke"
     stroke-width="5"
-    @click="test"
+    @click="deleteLine"
   ></path>
 </template>
 
 <script setup>
+import { useSceneParamsStore } from '@/store/sceneParams';
+const state = useSceneParamsStore();
+
 const props = defineProps({
   options: {
     type: Object,
@@ -27,6 +30,10 @@ const test = () => {
   M1.value += 100;
   M2.value += 100;
   lineParams.value = `M ${M1.value} ${M2.value} Q ${M1.value} ${M2.value} ${Q1.value} ${Q2.value}`;
+};
+
+const deleteLine = () => {
+  state.deleteLine(props.options.id);
 };
 
 const lineParams = toRef(null);
