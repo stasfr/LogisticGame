@@ -71,6 +71,9 @@
 </template>
 
 <script setup>
+import { useSceneParamsStore } from '@/store/sceneParams';
+const state = useSceneParamsStore();
+
 const props = defineProps({
   options: {
     type: Object,
@@ -103,5 +106,6 @@ const drop = ({ target }) => {
 const move = ({ offsetX, offsetY }) => {
   coordX.value = offsetX - dragOffsetX.value;
   coordY.value = offsetY - dragOffsetY.value;
+  state.sceneLines.find(element => element);
 };
 </script>

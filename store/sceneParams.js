@@ -7,7 +7,9 @@ const state = () => {
     addLineProps: {
       lineOrder: 1,
       firstDotCoords: [0, 0],
-      secondDotCoords: [0, 0]
+      firstDotId: [0, 0],
+      secondDotCoords: [0, 0],
+      secondDotId: [0, 0]
     }
   };
 };
@@ -43,7 +45,7 @@ const actions = {
     });
   },
 
-  addLine({ firstDotCoords, secondDotCoords }) {
+  addLine({ firstDotCoords, secondDotCoords, firstDotId, secondDotId }) {
     let id = 0;
     let M1 = firstDotCoords[0];
     let M2 = firstDotCoords[1];
@@ -51,24 +53,23 @@ const actions = {
     let Q1 = secondDotCoords[0];
     let Q2 = secondDotCoords[1];
 
-    let curve1 = (Q1 - M1) / 2 + M1;
-    let curve2 = (Q2 - M2) / 2 + M2;
-
     if (this.sceneLines.length === 0) {
       id = 1;
     } else {
       id = this.sceneLines[this.sceneLines.length - 1].id + 1;
     }
 
-    this.sceneLines.push({ id, M: [M1, M2], Q: [curve1, curve2, Q1, Q2] });
+    this.sceneLines.push({ id, M1, M2, Q1, Q2, firstDotId, secondDotId });
   },
 
-  setPointToLine(x, y) {
+  setPointToLine(x, y, tabId, dotId) {
     if (this.addLineProps.lineOrder === 1) {
       this.addLineProps.firstDotCoords = [x, y];
+      this.addLineProps.firstDotId = [tabId, dotId];
       this.addLineProps.lineOrder = 2;
     } else {
       this.addLineProps.secondDotCoords = [x, y];
+      this.addLineProps.secondDotId = [tabId, dotId];
       this.addLineProps.lineOrder = 1;
       this.addLine(this.addLineProps);
     }
