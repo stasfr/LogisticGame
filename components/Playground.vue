@@ -33,7 +33,6 @@ const currentPos = reactive({ x: 0, y: 0 });
 const onMouseDown = event => {
   if (event.button === 1) {
     // Нажатие на колесико мыши
-    event.preventDefault();
     event.target.setPointerCapture(event.pointerId);
     isDragging.value = true;
     startPos.x = event.clientX;

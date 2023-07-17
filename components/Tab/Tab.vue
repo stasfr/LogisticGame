@@ -89,12 +89,14 @@ const coordY = toRef(props.options.y);
 
 const cursorType = ref('cursor-grab');
 
-const drag = ({ offsetX, offsetY, target, pointerId }) => {
-  cursorType.value = 'cursor-grabbing';
-  dragOffsetX.value = offsetX - coordX.value;
-  dragOffsetY.value = offsetY - coordY.value;
-  target.setPointerCapture(pointerId);
-  target.addEventListener('pointermove', move);
+const drag = ({ offsetX, offsetY, target, pointerId, button }) => {
+  if (button != 1) {
+    cursorType.value = 'cursor-grabbing';
+    dragOffsetX.value = offsetX - coordX.value;
+    dragOffsetY.value = offsetY - coordY.value;
+    target.setPointerCapture(pointerId);
+    target.addEventListener('pointermove', move);
+  }
 };
 
 const drop = ({ target }) => {
