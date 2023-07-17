@@ -45,6 +45,7 @@
       @pointerup="drop"
       >{{ options.name }}</text
     >
+
     <text
       :x="coordX + options.width / 2"
       :y="coordY + options.height / 2"
@@ -55,19 +56,21 @@
       @pointerup="drop"
       >{{ options.id }}. w:{{ options.width }}, h:{{ options.height }}</text
     >
+
+    <TabDot
+      :cx="coordX"
+      :cy="coordY + options.height * 0.3"
+      :id="options.id"
+      :dotId="1"
+    />
+
+    <TabDot
+      :cx="coordX + options.width"
+      :cy="coordY + options.height * 0.3"
+      :id="options.id"
+      :dotId="2"
+    />
   </g>
-  <TabDot
-    :cx="coordX"
-    :cy="coordY + options.height * 0.3"
-    :id="options.id"
-    :dotId="1"
-  />
-  <TabDot
-    :cx="coordX + options.width"
-    :cy="coordY + options.height * 0.3"
-    :id="options.id"
-    :dotId="2"
-  />
 </template>
 
 <script setup>
