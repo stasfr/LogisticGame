@@ -92,11 +92,22 @@ const coordY = toRef(props.options.y);
 
 const cursorType = ref('cursor-grab');
 
+const movableLine = ref(null);
+
 const drag = ({ offsetX, offsetY, target, pointerId, button }) => {
   if (button != 1) {
     cursorType.value = 'cursor-grabbing';
     dragOffsetX.value = offsetX - coordX.value;
     dragOffsetY.value = offsetY - coordY.value;
+    movableLine.value = state.sceneLines.find(
+      element => element.firstDotId[0] === props.options.id
+    );
+    if (!movableLine.value) {
+      movableLine.value = state.sceneLines.find(
+        element => element.secondDotId[0] === props.options.id
+      );
+    }
+    console.log(movableLine.value);
     target.setPointerCapture(pointerId);
     target.addEventListener('pointermove', move);
   }
@@ -104,13 +115,12 @@ const drag = ({ offsetX, offsetY, target, pointerId, button }) => {
 
 const drop = ({ target }) => {
   cursorType.value = 'cursor-grab';
-  dragOffsetX.value = dragOffsetY.value = null;
+  movableLine.value = dragOffsetX.value = dragOffsetY.value = null;
   target.removeEventListener('pointermove', move);
 };
 
 const move = ({ offsetX, offsetY }) => {
   coordX.value = offsetX - dragOffsetX.value;
   coordY.value = offsetY - dragOffsetY.value;
-  state.sceneLines.find(element => element);
 };
 </script>

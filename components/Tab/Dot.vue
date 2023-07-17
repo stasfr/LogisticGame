@@ -32,6 +32,6 @@ const props = defineProps({
 });
 
 const startDrawLine = () => {
-  state.setPointToLine(props.cx, props.cy);
+  state.setPointToLine(props.cx, props.cy, props.id, props.dotId);
 };
 </script>
