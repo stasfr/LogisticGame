@@ -1,7 +1,7 @@
 <template>
   <div class="absolute inset-0 overflow-hidden bg-slate-700">
     <div
-      class="absolute inset-0 left-16 w-full overflow-hidden"
+      class="absolute inset-0 left-16 overflow-hidden"
       :class="[isDragging ? 'cursor-move' : '']"
       @pointerdown="onMouseDown"
       @pointermove="onMouseMove"
@@ -10,7 +10,7 @@
     >
       <div
         ref="container"
-        class="absolute bottom-[240px] left-[37px] right-[212px] top-[52px] touch-none overflow-auto"
+        class="absolute bottom-[240px] left-[37px] right-[212px] top-[52px] h-[750px] w-[1250px] touch-none overflow-auto"
       >
         <Scene :sceneOptions="sceneOption" :lineOptions="lineOption" />
       </div>
