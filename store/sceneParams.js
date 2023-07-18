@@ -2,7 +2,13 @@ import { defineStore } from 'pinia';
 
 const state = () => {
   return {
-    sceneBlocks: [],
+    sceneBlocks: [
+      {
+        id: 0,
+        tabs: [],
+        lines: []
+      }
+    ],
     addLineProps: {
       lineOrder: 1,
       firstDotCoords: [0, 0],
@@ -18,8 +24,8 @@ const getters = {};
 const actions = {
   buildBuilding(name, tabSize) {
     let id = 0;
-    let width = 200;
-    let height = 100;
+    let width = 0;
+    let height = 0;
     let x = 100;
     let y = 100;
 
@@ -28,22 +34,26 @@ const actions = {
       height = 100;
     }
 
-    if (this.sceneBlocks.length === 0) {
+    const blockIndex = this.sceneBlocks.findIndex(element => {
+      return element.id === 0;
+    });
+
+    if (this.sceneBlocks[blockIndex].tabs.length === 0) {
       id = 0;
     } else {
-      id = this.sceneBlocks[this.sceneBlocks.length - 1].id + 1;
+      id =
+        this.sceneBlocks[blockIndex].tabs[
+          this.sceneBlocks[blockIndex].tabs.length - 1
+        ].id + 1;
     }
 
-    this.sceneBlocks.push({
+    this.sceneBlocks[blockIndex].tabs.push({
       id,
-      tab: {
-        name,
-        width,
-        height,
-        x,
-        y
-      },
-      lines: []
+      name,
+      width,
+      height,
+      x,
+      y
     });
   },
 
@@ -55,20 +65,20 @@ const actions = {
     let Q1 = secondDotCoords[0];
     let Q2 = secondDotCoords[1];
 
-    const elementIndex = this.sceneBlocks.findIndex(element => {
-      return element.id === firstDotId[0];
+    const blockIndex = this.sceneBlocks.findIndex(element => {
+      return element.id === 0;
     });
 
-    if (this.sceneBlocks[elementIndex].lines.length === 0) {
+    if (this.sceneBlocks[blockIndex].lines.length === 0) {
       id = 0;
     } else {
       id =
-        this.sceneBlocks[elementIndex].lines[
-          this.sceneBlocks[elementIndex].lines.length - 1
+        this.sceneBlocks[blockIndex].lines[
+          this.sceneBlocks[blockIndex].lines.length - 1
         ].id + 1;
     }
 
-    this.sceneBlocks[elementIndex].lines.push({
+    this.sceneBlocks[blockIndex].lines.push({
       id,
       M1,
       M2,
@@ -93,7 +103,7 @@ const actions = {
 
   deleteLine(blockId, lineId) {
     const blockIndex = this.sceneBlocks.findIndex(element => {
-      return element.id === blockId;
+      return element.id === 0;
     });
 
     this.sceneBlocks[blockIndex].lines.splice(

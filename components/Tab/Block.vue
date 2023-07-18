@@ -1,5 +1,10 @@
 <template>
-  <Tab :options="props.block.tab" :id="props.block.id" />
+  <Tab
+    v-for="tab in props.block.tabs"
+    :key="tab.id"
+    :options="tab"
+    :blockId="props.block.id"
+  />
   <TabLine
     v-for="line in props.block.lines"
     :key="line.id"

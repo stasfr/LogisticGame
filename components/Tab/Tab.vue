@@ -75,7 +75,7 @@
 
 <script setup>
 const props = defineProps({
-  id: {
+  blockId: {
     type: Number,
     require: true
   },
