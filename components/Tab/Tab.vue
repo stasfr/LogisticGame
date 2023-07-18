@@ -54,7 +54,7 @@
       fill="black"
       @pointerdown="drag"
       @pointerup="drop"
-      >{{ props.id }}. w:{{ options.width }}, h:{{ options.height }}</text
+      >{{ options.id }}. w:{{ options.width }}, h:{{ options.height }}</text
     >
 
     <TabDot
