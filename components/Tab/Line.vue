@@ -15,6 +15,10 @@ import { useSceneParamsStore } from '@/store/sceneParams';
 const state = useSceneParamsStore();
 
 const props = defineProps({
+  blockId: {
+    type: Number,
+    require: true
+  },
   options: {
     type: Object,
     require: true
@@ -33,7 +37,7 @@ const test = () => {
 };
 
 const deleteLine = () => {
-  state.deleteLine(props.options.id);
+  state.deleteLine(props.blockId, props.options.id);
 };
 
 const lineParams = toRef(null);

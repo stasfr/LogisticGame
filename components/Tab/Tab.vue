@@ -54,30 +54,31 @@
       fill="black"
       @pointerdown="drag"
       @pointerup="drop"
-      >{{ options.id }}. w:{{ options.width }}, h:{{ options.height }}</text
+      >{{ props.id }}. w:{{ options.width }}, h:{{ options.height }}</text
     >
 
     <TabDot
       :cx="coordX"
       :cy="coordY + options.height * 0.3"
-      :id="options.id"
+      :id="props.id"
       :dotId="1"
     />
 
     <TabDot
       :cx="coordX + options.width"
       :cy="coordY + options.height * 0.3"
-      :id="options.id"
+      :id="props.id"
       :dotId="2"
     />
   </g>
 </template>
 
 <script setup>
-import { useSceneParamsStore } from '@/store/sceneParams';
-const state = useSceneParamsStore();
-
 const props = defineProps({
+  id: {
+    type: Number,
+    require: true
+  },
   options: {
     type: Object,
     require: true
@@ -92,22 +93,11 @@ const coordY = toRef(props.options.y);
 
 const cursorType = ref('cursor-grab');
 
-const movableLine = ref(null);
-
 const drag = ({ offsetX, offsetY, target, pointerId, button }) => {
   if (button != 1) {
     cursorType.value = 'cursor-grabbing';
     dragOffsetX.value = offsetX - coordX.value;
     dragOffsetY.value = offsetY - coordY.value;
-    movableLine.value = state.sceneLines.find(
-      element => element.firstDotId[0] === props.options.id
-    );
-    if (!movableLine.value) {
-      movableLine.value = state.sceneLines.find(
-        element => element.secondDotId[0] === props.options.id
-      );
-    }
-    console.log(movableLine.value);
     target.setPointerCapture(pointerId);
     target.addEventListener('pointermove', move);
   }
@@ -115,7 +105,7 @@ const drag = ({ offsetX, offsetY, target, pointerId, button }) => {
 
 const drop = ({ target }) => {
   cursorType.value = 'cursor-grab';
-  movableLine.value = dragOffsetX.value = dragOffsetY.value = null;
+  dragOffsetX.value = dragOffsetY.value = null;
   target.removeEventListener('pointermove', move);
 };
 

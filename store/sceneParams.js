@@ -2,8 +2,7 @@ import { defineStore } from 'pinia';
 
 const state = () => {
   return {
-    sceneTabs: [],
-    sceneLines: [],
+    sceneBlocks: [],
     addLineProps: {
       lineOrder: 1,
       firstDotCoords: [0, 0],
@@ -29,19 +28,22 @@ const actions = {
       height = 100;
     }
 
-    if (this.sceneTabs.length === 0) {
+    if (this.sceneBlocks.length === 0) {
       id = 0;
     } else {
-      id = this.sceneTabs[this.sceneTabs.length - 1].id + 1;
+      id = this.sceneBlocks[this.sceneBlocks.length - 1].id + 1;
     }
 
-    this.sceneTabs.push({
+    this.sceneBlocks.push({
       id,
-      name,
-      width,
-      height,
-      x,
-      y
+      tab: {
+        name,
+        width,
+        height,
+        x,
+        y
+      },
+      lines: []
     });
   },
 
@@ -53,13 +55,27 @@ const actions = {
     let Q1 = secondDotCoords[0];
     let Q2 = secondDotCoords[1];
 
-    if (this.sceneLines.length === 0) {
+    const elementIndex = this.sceneBlocks.findIndex(element => {
+      return element.id === firstDotId[0];
+    });
+
+    if (this.sceneBlocks[elementIndex].lines.length === 0) {
       id = 0;
     } else {
-      id = this.sceneLines[this.sceneLines.length - 1].id + 1;
+      id =
+        this.sceneBlocks[elementIndex].lines[
+          this.sceneBlocks[elementIndex].lines.length - 1
+        ].id + 1;
     }
 
-    this.sceneLines.push({ id, M1, M2, Q1, Q2, firstDotId, secondDotId });
+    this.sceneBlocks[elementIndex].lines.push({
+      id,
+      M1,
+      M2,
+      Q1,
+      Q2,
+      destination: secondDotId[0]
+    });
   },
 
   setPointToLine(x, y, tabId, dotId) {
@@ -75,9 +91,13 @@ const actions = {
     }
   },
 
-  deleteLine(lineId) {
-    this.sceneLines.splice(
-      this.sceneLines.findIndex(element => {
+  deleteLine(blockId, lineId) {
+    const blockIndex = this.sceneBlocks.findIndex(element => {
+      return element.id === blockId;
+    });
+
+    this.sceneBlocks[blockIndex].lines.splice(
+      this.sceneBlocks[blockIndex].lines.findIndex(element => {
         return element.id === lineId;
       }),
       1

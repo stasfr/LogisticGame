@@ -12,7 +12,7 @@
         ref="container"
         class="absolute bottom-[240px] left-[37px] right-[212px] top-[52px] h-[750px] w-[1250px] touch-none overflow-auto"
       >
-        <Scene :sceneOptions="sceneOption" :lineOptions="lineOption" />
+        <Scene :sceneBlocks="sceneBlocks" />
       </div>
     </div>
   </div>
@@ -22,8 +22,7 @@
 import { useSceneParamsStore } from '@/store/sceneParams';
 const state = useSceneParamsStore();
 
-const sceneOption = state.sceneTabs;
-const lineOption = state.sceneLines;
+const sceneBlocks = state.sceneBlocks;
 
 const container = ref(null);
 const isDragging = ref(false);
