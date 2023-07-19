@@ -41,10 +41,7 @@ const actions = {
     if (this.sceneBlocks[blockIndex].tabs.length === 0) {
       id = 0;
     } else {
-      id =
-        this.sceneBlocks[blockIndex].tabs[
-          this.sceneBlocks[blockIndex].tabs.length - 1
-        ].id + 1;
+      id = this.sceneBlocks[blockIndex].tabs.at(-1).id + 1;
     }
 
     this.sceneBlocks[blockIndex].tabs.push({
@@ -72,10 +69,7 @@ const actions = {
     if (this.sceneBlocks[blockIndex].lines.length === 0) {
       id = 0;
     } else {
-      id =
-        this.sceneBlocks[blockIndex].lines[
-          this.sceneBlocks[blockIndex].lines.length - 1
-        ].id + 1;
+      id = this.sceneBlocks[blockIndex].lines.at(-1).id + 1;
     }
 
     this.sceneBlocks[blockIndex].lines.push({
@@ -84,7 +78,8 @@ const actions = {
       y1,
       x2,
       y2,
-      destination: secondDotId[0]
+      firstDotId,
+      secondDotId
     });
   },
 

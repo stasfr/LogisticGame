@@ -60,15 +60,17 @@
     <TabDot
       :cx="coordX"
       :cy="coordY + options.height * 0.3"
-      :id="props.id"
+      :tabId="options.id"
       :dotId="1"
+      :blockId="props.blockId"
     />
 
     <TabDot
       :cx="coordX + options.width"
       :cy="coordY + options.height * 0.3"
-      :id="props.id"
+      :tabId="options.id"
       :dotId="2"
+      :blockId="props.blockId"
     />
   </g>
 </template>
