@@ -1,13 +1,16 @@
 <template>
-  <path
-    :d="lineParams"
+  <line
+    :x1="x1"
+    :y1="y1"
+    :x2="x2"
+    :y2="y2"
     fill="none"
     stroke="white"
     stroke-miterlimit="10"
     pointer-events="stroke"
     stroke-width="5"
     @click="deleteLine"
-  ></path>
+  ></line>
 </template>
 
 <script setup>
@@ -25,21 +28,12 @@ const props = defineProps({
   }
 });
 
-const M1 = toRef(props.options.M1);
-const M2 = toRef(props.options.M2);
-const Q1 = toRef(props.options.Q1);
-const Q2 = toRef(props.options.Q2);
-
-const test = () => {
-  M1.value += 100;
-  M2.value += 100;
-  lineParams.value = `M ${M1.value} ${M2.value} Q ${M1.value} ${M2.value} ${Q1.value} ${Q2.value}`;
-};
+const x1 = toRef(props.options.x1);
+const y1 = toRef(props.options.y1);
+const x2 = toRef(props.options.x2);
+const y2 = toRef(props.options.y2);
 
 const deleteLine = () => {
   state.deleteLine(props.blockId, props.options.id);
 };
-
-const lineParams = toRef(null);
-lineParams.value = `M ${M1.value} ${M2.value} Q ${M1.value} ${M2.value} ${Q1.value} ${Q2.value}`;
 </script>

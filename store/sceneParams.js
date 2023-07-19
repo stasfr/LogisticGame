@@ -59,11 +59,11 @@ const actions = {
 
   addLine({ firstDotCoords, secondDotCoords, firstDotId, secondDotId }) {
     let id = 0;
-    let M1 = firstDotCoords[0];
-    let M2 = firstDotCoords[1];
+    let x1 = firstDotCoords[0];
+    let y1 = firstDotCoords[1];
 
-    let Q1 = secondDotCoords[0];
-    let Q2 = secondDotCoords[1];
+    let x2 = secondDotCoords[0];
+    let y2 = secondDotCoords[1];
 
     const blockIndex = this.sceneBlocks.findIndex(element => {
       return element.id === 0;
@@ -80,10 +80,10 @@ const actions = {
 
     this.sceneBlocks[blockIndex].lines.push({
       id,
-      M1,
-      M2,
-      Q1,
-      Q2,
+      x1,
+      y1,
+      x2,
+      y2,
       destination: secondDotId[0]
     });
   },

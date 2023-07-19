@@ -5,7 +5,7 @@
     :options="tab"
     :blockId="props.block.id"
   />
-  <TabLine
+  <TabRelationLine
     v-for="line in props.block.lines"
     :key="line.id"
     :options="line"
