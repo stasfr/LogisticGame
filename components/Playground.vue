@@ -7,10 +7,12 @@
       @pointermove="onMouseMove"
       @pointerup="onMouseUp"
       @pointerleave="onMouseUp"
+      @wheel="onWheel"
     >
       <div
         ref="container"
         class="absolute bottom-[240px] left-[37px] right-[212px] top-[52px] h-[750px] w-[1250px] touch-none overflow-auto"
+        :style="{ transform: `translate(${currentPos.x}px, ${currentPos.y}px) scale(${zoomLevel})` }"
       >
         <Scene :sceneBlocks="sceneBlocks" />
       </div>
@@ -28,6 +30,8 @@ const container = ref(null);
 const isDragging = ref(false);
 const startPos = reactive({ x: 0, y: 0 });
 const currentPos = reactive({ x: 0, y: 0 });
+const zoomLevel = ref(1); // Начальное положение
+
 
 const onMouseDown = event => {
   if (event.button === 1) {
@@ -53,5 +57,13 @@ const onMouseMove = event => {
 
 const onMouseUp = () => {
   isDragging.value = false;
+};
+
+const onWheel = event => {
+  // Zoom 
+  const zoomIntensity = 0.05; //Скорость приближения/отдаления
+  event.preventDefault();
+  const zoomDirection = event.deltaY > 0 ? -1 : 1;
+  zoomLevel.value = Math.max(0.1, Math.min(zoomLevel.value + zoomDirection * zoomIntensity, 3)); // Регулировка пределов масштабирования (min: 0.1, max: 3)
 };
 </script>
