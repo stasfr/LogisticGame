@@ -1,9 +1,9 @@
 <template>
   <line
-    :x1="x1"
-    :y1="y1"
-    :x2="x2"
-    :y2="y2"
+    :x1="props.options.x1"
+    :y1="props.options.y1"
+    :x2="props.options.x2"
+    :y2="props.options.y2"
     fill="none"
     stroke="white"
     stroke-miterlimit="10"
@@ -27,11 +27,6 @@ const props = defineProps({
     require: true
   }
 });
-
-const x1 = toRef(props.options.x1);
-const y1 = toRef(props.options.y1);
-const x2 = toRef(props.options.x2);
-const y2 = toRef(props.options.y2);
 
 const deleteLine = () => {
   state.deleteLine(props.blockId, props.options.id);
