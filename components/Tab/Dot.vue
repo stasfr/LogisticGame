@@ -76,6 +76,12 @@ watch(
 );
 
 const startDrawLine = () => {
-  state.setPointToLine(props.cx, props.cy, props.tabId, props.dotId);
+  state.setPointToLine(
+    props.cx,
+    props.cy,
+    props.tabId,
+    props.dotId,
+    props.blockId
+  );
 };
 </script>

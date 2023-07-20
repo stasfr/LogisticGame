@@ -11,10 +11,8 @@ const state = () => {
     ],
     addLineProps: {
       lineOrder: 1,
-      firstDotCoords: [0, 0],
-      firstDotId: [0, 0],
-      secondDotCoords: [0, 0],
-      secondDotId: [0, 0]
+      startDot: {},
+      finishDot: {}
     }
   };
 };
@@ -22,7 +20,7 @@ const state = () => {
 const getters = {};
 
 const actions = {
-  buildBuilding(name, tabSize) {
+  buildBuilding(name, tabSize, blockId) {
     let id = 0;
     let width = 0;
     let height = 0;
@@ -35,7 +33,7 @@ const actions = {
     }
 
     const blockIndex = this.sceneBlocks.findIndex(element => {
-      return element.id === 0;
+      return element.id === blockId;
     });
 
     if (this.sceneBlocks[blockIndex].tabs.length === 0) {
@@ -54,55 +52,61 @@ const actions = {
     });
   },
 
-  addLine({ firstDotCoords, secondDotCoords, firstDotId, secondDotId }) {
+  addLine(startDot, finishDot) {
+    const blockId = startDot.blockId;
+
     let id = 0;
-    let x1 = firstDotCoords[0];
-    let y1 = firstDotCoords[1];
 
-    let x2 = secondDotCoords[0];
-    let y2 = secondDotCoords[1];
+    let x1 = startDot.x;
+    let y1 = startDot.y;
 
-    const blockIndex = this.sceneBlocks.findIndex(element => {
-      return element.id === 0;
-    });
+    let x2 = finishDot.x;
+    let y2 = finishDot.y;
 
-    if (this.sceneBlocks[blockIndex].lines.length === 0) {
+    if (this.sceneBlocks[blockId].lines.length === 0) {
       id = 0;
     } else {
-      id = this.sceneBlocks[blockIndex].lines.at(-1).id + 1;
+      id = this.sceneBlocks[blockId].lines.at(-1).id + 1;
     }
 
-    this.sceneBlocks[blockIndex].lines.push({
+    this.sceneBlocks[blockId].lines.push({
       id,
       x1,
       y1,
       x2,
-      y2,
-      firstDotId,
-      secondDotId
+      y2
     });
   },
 
-  setPointToLine(x, y, tabId, dotId) {
+  setPointToLine(x, y, tabId, dotId, blockId) {
     if (this.addLineProps.lineOrder === 1) {
-      this.addLineProps.firstDotCoords = [x, y];
-      this.addLineProps.firstDotId = [tabId, dotId];
+      this.addLineProps.startDot = {
+        x,
+        y,
+        tabId,
+        dotId,
+        blockId
+      };
+
       this.addLineProps.lineOrder = 2;
     } else {
-      this.addLineProps.secondDotCoords = [x, y];
-      this.addLineProps.secondDotId = [tabId, dotId];
+      this.addLineProps.finishDot = {
+        x,
+        y,
+        tabId,
+        dotId,
+        blockId
+      };
+
       this.addLineProps.lineOrder = 1;
-      this.addLine(this.addLineProps);
+
+      this.addLine(this.addLineProps.startDot, this.addLineProps.finishDot);
     }
   },
 
   deleteLine(blockId, lineId) {
-    const blockIndex = this.sceneBlocks.findIndex(element => {
-      return element.id === 0;
-    });
-
-    this.sceneBlocks[blockIndex].lines.splice(
-      this.sceneBlocks[blockIndex].lines.findIndex(element => {
+    this.sceneBlocks[blockId].lines.splice(
+      this.sceneBlocks[blockId].lines.findIndex(element => {
         return element.id === lineId;
       }),
       1

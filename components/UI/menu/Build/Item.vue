@@ -20,6 +20,7 @@ const props = defineProps({
 });
 
 const build = () => {
-  state.buildBuilding(props.data.name, props.data.tabSize);
+  //вместо 0 нужно сделать blockId
+  state.buildBuilding(props.data.name, props.data.tabSize, 0);
 };
 </script>
