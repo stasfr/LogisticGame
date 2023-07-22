@@ -114,7 +114,12 @@ const actions = {
 
       this.addLineProps.lineOrder = 1;
 
-      this.addLine(this.addLineProps.startDot, this.addLineProps.finishDot);
+      if (
+        this.addLineProps.startDot.tabId != this.addLineProps.finishDot.tabId &&
+        this.addLineProps.startDot.dotId != this.addLineProps.finishDot.dotId
+      ) {
+        this.addLine(this.addLineProps.startDot, this.addLineProps.finishDot);
+      }
     }
   },
 
