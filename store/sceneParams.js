@@ -9,6 +9,7 @@ const state = () => {
         lines: []
       }
     ],
+    dots: {},
     addLineProps: {
       lineOrder: 1,
       startDot: {},
@@ -42,6 +43,13 @@ const actions = {
       id = this.sceneBlocks[blockIndex].tabs.at(-1).id + 1;
     }
 
+    this.dots[blockId] ??= {};
+    this.dots[blockId][id] = {};
+    this.dots[blockId][id][1] = [];
+    this.dots[blockId][id][2] = [];
+
+    console.log(this.dots);
+
     this.sceneBlocks[blockIndex].tabs.push({
       id,
       name,
@@ -68,6 +76,12 @@ const actions = {
     } else {
       id = this.sceneBlocks[blockId].lines.at(-1).id + 1;
     }
+
+    this.dots[blockId][startDot.tabId][startDot.dotId].push({ id, coords: 1 });
+    this.dots[blockId][finishDot.tabId][finishDot.dotId].push({
+      id,
+      coords: 2
+    });
 
     this.sceneBlocks[blockId].lines.push({
       id,

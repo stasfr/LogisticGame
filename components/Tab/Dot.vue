@@ -36,40 +36,15 @@ const props = defineProps({
 });
 
 watch(
-  () => props.cx,
+  () => [props.cx, props.cy],
   () => {
-    state.sceneBlocks[props.blockId].lines.forEach(element => {
-      if (
-        element.firstDotId[0] === props.tabId &&
-        element.firstDotId[1] === props.dotId
-      ) {
-        element.x1 = props.cx;
-      }
-      if (
-        element.secondDotId[0] === props.tabId &&
-        element.secondDotId[1] === props.dotId
-      ) {
-        element.x2 = props.cx;
-      }
-    });
-  }
-);
-
-watch(
-  () => props.cy,
-  () => {
-    state.sceneBlocks[props.blockId].lines.forEach(element => {
-      if (
-        element.firstDotId[0] === props.tabId &&
-        element.firstDotId[1] === props.dotId
-      ) {
-        element.y1 = props.cy;
-      }
-      if (
-        element.secondDotId[0] === props.tabId &&
-        element.secondDotId[1] === props.dotId
-      ) {
-        element.y2 = props.cy;
+    state.dots[props.blockId][props.tabId][props.dotId].forEach(element => {
+      if (element.coords === 1) {
+        state.sceneBlocks[props.blockId].lines[element.id].x1 = props.cx;
+        state.sceneBlocks[props.blockId].lines[element.id].y1 = props.cy;
+      } else {
+        state.sceneBlocks[props.blockId].lines[element.id].x2 = props.cx;
+        state.sceneBlocks[props.blockId].lines[element.id].y2 = props.cy;
       }
     });
   }
