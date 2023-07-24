@@ -61,15 +61,26 @@ const actions = {
   },
 
   addLine(startDot, finishDot) {
+    const getDotCoords = (dotId, width) => {
+      if (dotId === 1) {
+        return 0;
+      } else {
+        return width;
+      }
+    };
+
     const blockId = startDot.blockId;
 
     let id = 0;
 
-    let x1 = startDot.x;
-    let y1 = startDot.y;
+    const startTab = this.sceneBlocks[blockId].tabs[startDot.tabId];
+    const finishTab = this.sceneBlocks[blockId].tabs[finishDot.tabId];
 
-    let x2 = finishDot.x;
-    let y2 = finishDot.y;
+    const x1 = startTab.x + getDotCoords(startDot.dotId, startTab.width);
+    const y1 = startTab.y + startTab.height * 0.3;
+
+    const x2 = finishTab.x + getDotCoords(finishDot.dotId, finishTab.width);
+    const y2 = finishTab.y + finishTab.height * 0.3;
 
     if (this.sceneBlocks[blockId].lines.length === 0) {
       id = 0;

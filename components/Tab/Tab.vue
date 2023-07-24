@@ -108,6 +108,8 @@ const drag = ({ offsetX, offsetY, target, pointerId, button }) => {
 const drop = ({ target }) => {
   cursorType.value = 'cursor-grab';
   dragOffsetX.value = dragOffsetY.value = null;
+  props.options.x = coordX.value;
+  props.options.y = coordY.value;
   target.removeEventListener('pointermove', move);
 };
 
