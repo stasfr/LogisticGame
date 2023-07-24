@@ -115,8 +115,7 @@ const actions = {
       this.addLineProps.lineOrder = 1;
 
       if (
-        this.addLineProps.startDot.tabId != this.addLineProps.finishDot.tabId &&
-        this.addLineProps.startDot.dotId != this.addLineProps.finishDot.dotId
+        this.addLineProps.startDot.tabId != this.addLineProps.finishDot.tabId
       ) {
         this.addLine(this.addLineProps.startDot, this.addLineProps.finishDot);
       }
