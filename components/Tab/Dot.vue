@@ -1,10 +1,12 @@
 <template>
   <circle
-    r="5"
-    class="cursor-alias fill-white stroke-slate-600 stroke-1 hover:stroke-slate-950"
+    :r="r"
+    class="cursor-alias fill-white stroke-slate-600 stroke-1 hover:stroke-slate-950 hover:opacity-80"
     :cx="props.cx"
     :cy="props.cy"
     @pointerdown="startDrawLine"
+    @pointerenter="increaseDotSize"
+    @pointerleave="decreaseDotSize"
   />
 </template>
 
@@ -49,6 +51,16 @@ watch(
     });
   }
 );
+
+const r = ref(5);
+
+const increaseDotSize = () => {
+  r.value = 10;
+};
+
+const decreaseDotSize = () => {
+  r.value = 5;
+};
 
 const startDrawLine = () => {
   state.setPointToLine(
