@@ -11,8 +11,11 @@
     >
       <div
         ref="container"
-        class="absolute bottom-[240px] left-[37px] right-[212px] top-[52px] h-[750px] w-[1250px] touch-none overflow-auto"
-        :style="{ transform: `translate(${currentPos.x}px, ${currentPos.y}px) scale(${zoomLevel})` }"
+        class="absolute bottom-[240px] left-[37px] right-[212px] top-[52px] touch-none overflow-auto"
+        :class="sceneSize"
+        :style="{
+          transform: `translate(${currentPos.x}px, ${currentPos.y}px) scale(${zoomLevel})`
+        }"
       >
         <Scene :sceneBlocks="sceneBlocks" />
       </div>
@@ -32,6 +35,7 @@ const startPos = reactive({ x: 0, y: 0 });
 const currentPos = reactive({ x: 0, y: 0 });
 const zoomLevel = ref(1); // Начальное положение
 
+const sceneSize = `h-[${state.sceneSize.height}px] w-[${state.sceneSize.width}px]`;
 
 const onMouseDown = event => {
   if (event.button === 1) {
@@ -60,10 +64,13 @@ const onMouseUp = () => {
 };
 
 const onWheel = event => {
-  // Zoom 
+  // Zoom
   const zoomIntensity = 0.05; //Скорость приближения/отдаления
   event.preventDefault();
   const zoomDirection = event.deltaY > 0 ? -1 : 1;
-  zoomLevel.value = Math.max(0.1, Math.min(zoomLevel.value + zoomDirection * zoomIntensity, 3)); // Регулировка пределов масштабирования (min: 0.1, max: 3)
+  zoomLevel.value = Math.max(
+    0.1,
+    Math.min(zoomLevel.value + zoomDirection * zoomIntensity, 3)
+  ); // Регулировка пределов масштабирования (min: 0.1, max: 3)
 };
 </script>

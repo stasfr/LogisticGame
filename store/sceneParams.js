@@ -5,15 +5,47 @@ const state = () => {
     sceneBlocks: [
       {
         id: 0,
-        tabs: [],
+        tabs: [
+          {
+            id: 0,
+            width: 200,
+            height: 100,
+            x: 100,
+            y: 100,
+            name: 'logger'
+          },
+          {
+            id: 1,
+            width: 200,
+            height: 100,
+            x: 550,
+            y: 250,
+            name: 'logger'
+          }
+        ],
         lines: []
       }
     ],
-    dots: {},
+    dots: {
+      0: {
+        0: {
+          1: [],
+          2: []
+        },
+        1: {
+          1: [],
+          2: []
+        }
+      }
+    },
     addLineProps: {
       lineOrder: 1,
       startDot: {},
       finishDot: {}
+    },
+    sceneSize: {
+      height: 750,
+      width: 1250
     }
   };
 };
