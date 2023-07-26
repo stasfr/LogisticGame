@@ -76,6 +76,9 @@
 </template>
 
 <script setup>
+import { useSceneParamsStore } from '@/store/sceneParams';
+const state = useSceneParamsStore();
+
 const props = defineProps({
   blockId: {
     type: Number,
@@ -116,5 +119,8 @@ const drop = ({ target }) => {
 const move = ({ offsetX, offsetY }) => {
   coordX.value = offsetX - dragOffsetX.value;
   coordY.value = offsetY - dragOffsetY.value;
+  if (coordX.value <= 0) {
+    state.sceneSize.width += 1250;
+  }
 };
 </script>
